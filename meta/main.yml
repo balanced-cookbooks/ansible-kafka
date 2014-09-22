@@ -1,4 +1,4 @@
 # file: ansible-kafka/meta/main.yml
 #
-dependencies:
+#dependencies:
 #  - { role: ansible-role-java }
