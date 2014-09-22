@@ -1,0 +1,6 @@
+# file: ansible-kafka/tasks/configure.yml
+
+- name: Kafka | Update the kafka configuration
+  template: src=opt_kafka_config_server.properties.j2 dest=/opt/kafka_{{ kafka_version }}/config/server.properties owner={{ kafka_user }} group={{ kafka_group }} mode=0644
+  notify:
+    - restart kafka

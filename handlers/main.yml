@@ -1,0 +1,4 @@
+# file: knsible-afka/handlers/main.yml
+
+- name: restart kafka
+  command: supervisorctl restart kafka-broker
