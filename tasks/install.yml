@@ -1,0 +1,14 @@
+# file: ansible-kafka/tasks/install.yml
+
+- stat: path=/opt/kafka_{{kafka_version}}/
+  register: kafka_dir_status
+
+- get_url: url={{ kafka_download_url }}
+           dest=/tmp/kafka_{{ kafka_version }}.tar.gz
+           sha256sum={{kafka_sha256sum}}
+  when: kafka_dir_status.stat.exists == false
+
+- command: chdir=/opt tar xzf /tmp/kafka_{{kafka_version}}.tar.gz creates=/opt/kafka_{{kafka_version}}/bin/kafka-server-start.sh
+
+- file: path=/opt/kafka_{{kafka_version}} state=directory owner={{ kafka_user }} group={{ kafka_group }} recurse=yes
+  changed_when: false
