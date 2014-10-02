@@ -17,42 +17,42 @@
 ############################# Server Basics #############################
 
 # The id of the broker. This must be set to a unique integer for each broker.
-broker.id={{kafka_server_broker_id}}
+broker.id={{ kafka_server_broker_id }}
 
 ############################# Socket Server Settings #############################
 
 # The port the socket server listens on
-port={{kafka_server_port}}
+port={{ kafka_server_port }}
 
 # Hostname the broker will bind to and advertise to producers and consumers.
 # If not set, the server will bind to all interfaces and advertise the value returned from
 # from java.net.InetAddress.getCanonicalHostName().
-host.name={{kafka_host_name}}
+host.name={{ kafka_host_name }}
 
 # The number of threads handling network requests
-num.network.threads={{kafka_server_num_network_threads}}
+num.network.threads={{ kafka_server_num_network_threads }}
 
 # The number of threads doing disk I/O
-num.io.threads={{kafka_server_num_io_threads}}
+num.io.threads={{ kafka_server_num_io_threads }}
 
 # The send buffer (SO_SNDBUF) used by the socket server
-socket.send.buffer.bytes={{kafka_server_socket_send_buffer_bytes}}
+socket.send.buffer.bytes={{ kafka_server_socket_send_buffer_bytes }}
 
 # The receive buffer (SO_RCVBUF) used by the socket server
-socket.receive.buffer.bytes={{kafka_server_socket_receive_buffer_bytes}}
+socket.receive.buffer.bytes={{ kafka_server_socket_receive_buffer_bytes }}
 
 # The maximum size of a request that the socket server will accept (protection against OOM)
-socket.request.max.bytes={{kafka_server_socket_request_max_bytes}}
+socket.request.max.bytes={{ kafka_server_socket_request_max_bytes }}
 
 
 ############################# Log Basics #############################
 
 # The directory under which to store log files
-log.dir={{kafka_local_dir}}
+log.dir={{ kafka_log_dir }}
 
 # The number of logical partitions per topic per server. More partitions allow greater parallelism
 # for consumption, but also mean more files.
-num.partitions={{kafka_server_num_partitions}}
+num.partitions={{ kafka_server_num_partitions }}
 
 ############################# Log Flush Policy #############################
 
@@ -66,10 +66,10 @@ num.partitions={{kafka_server_num_partitions}}
 # every N messages (or both). This can be done globally and overridden on a per-topic basis.
 
 # The number of messages to accept before forcing a flush of data to disk
-log.flush.interval.messages={{kafka_server_log_flush_interval_messages}}
+log.flush.interval.messages={{ kafka_server_log_flush_interval_messages }}
 
 # The maximum amount of time a message can sit in a log before we force a flush
-log.flush.interval.ms={{kafka_server_log_flush_interval_ms}}
+log.flush.interval.ms={{ kafka_server_log_flush_interval_ms }}
 
 # Per-topic overrides for log.flush.interval.ms
 #log.flush.intervals.ms.per.topic=topic1:1000, topic2:3000
@@ -82,18 +82,18 @@ log.flush.interval.ms={{kafka_server_log_flush_interval_ms}}
 # from the end of the log.
 
 # The minimum age of a log file to be eligible for deletion
-log.retention.hours={{kafka_server_log_retention_hours}}
+log.retention.hours={{ kafka_server_log_retention_hours }}
 
 # A size-based retention policy for logs. Segments are pruned from the log as long as the remaining
 # segments don't drop below log.retention.bytes.
 #log.retention.bytes=1073741824
 
 # The maximum size of a log segment file. When this size is reached a new log segment will be created.
-log.segment.bytes={{kafka_server_log_segment_bytes}}
+log.segment.bytes={{ kafka_server_log_segment_bytes }}
 
 # The interval at which log segments are checked to see if they can be deleted according
 # to the retention policies
-log.cleanup.interval.mins={{kafka_server_log_cleanup_interval_mins}}
+log.cleanup.interval.mins={{ kafka_server_log_cleanup_interval_mins }}
 
 ############################# Zookeeper #############################
 
@@ -105,11 +105,11 @@ log.cleanup.interval.mins={{kafka_server_log_cleanup_interval_mins}}
 zookeeper.connect={{ kafka_server_zookeeper_connect|join(",") }}
 
 # Timeout in ms for connecting to zookeeper
-zookeeper.connection.timeout.ms={{kafka_server_zookeeper_connection_timeout_ms}}
+zookeeper.connection.timeout.ms={{ kafka_server_zookeeper_connection_timeout_ms }}
 
 # metrics reporter properties
-kafka.metrics.polling.interval.secs={{kafka_server_kafka_metrics_polling_interval_secs}}
-kafka.metrics.reporters={{kafka_server_kafka_metrics_reporters}}
-kafka.csv.metrics.dir={{kafka_local_dir}}/kafka_metrics
+kafka.metrics.polling.interval.secs={{ kafka_server_kafka_metrics_polling_interval_secs }}
+kafka.metrics.reporters={{ kafka_server_kafka_metrics_reporters }}
+kafka.csv.metrics.dir={{ kafka_local_dir }}/kafka_metrics
 # Disable csv reporting by default.
-kafka.csv.metrics.reporter.enabled={{kafka_server_kafka_csv_metrics_reporter_enabled}}
+kafka.csv.metrics.reporter.enabled={{ kafka_server_kafka_csv_metrics_reporter_enabled }}
