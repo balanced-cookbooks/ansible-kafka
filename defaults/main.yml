@@ -8,6 +8,8 @@ kafka_group: kafka
 kafka_uid: 3070
 kafka_gid: 3070
 kafka_local_dir: /opt/kafka_{{ kafka_version }}
+kafka_log_dir: /var/log/kafka
+kafka_cfg_dir: /etc/kafka
 
 # server.properties required settings
 kafka_server_JMX_PORT: 13005

@@ -1,5 +1,8 @@
 # file: ansible-kafka/tasks/install.yml
 
+- file: path={{ kafka_log_dir }} state=directory owner={{ kafka_user }}
+- file: path={{ kafka_cfg_dir }} state=directory owner={{ kafka_user }}
+
 - stat: path=/opt/kafka_{{kafka_version}}/
   register: kafka_dir_status
 
