@@ -17,7 +17,7 @@
   register: log_path
 
 - file: path=/opt/kafka_{{ kafka_version }}/logs state=absent
-  when: log_path.stat.isdir
+  when: log_path.stat.exists and log_path.stat.isdir
 
 - file: src={{ kafka_log_dir }} dest=/opt/kafka_{{kafka_version}}/logs owner={{ kafka_user }} group={{ kafka_group }} state=link
 - file: src=/opt/kafka_{{kafka_version}}/config dest={{ kafka_cfg_dir }} owner={{ kafka_user }} group={{ kafka_group }} state=link
