@@ -27,7 +27,7 @@ port={{ kafka_server_port }}
 # Hostname the broker will bind to and advertise to producers and consumers.
 # If not set, the server will bind to all interfaces and advertise the value returned from
 # from java.net.InetAddress.getCanonicalHostName().
-host.name={{ kafka_host_name }}
+{#host.name={{ kafka_host_name }}#}
 
 # The number of threads handling network requests
 num.network.threads={{ kafka_server_num_network_threads }}
@@ -48,7 +48,7 @@ socket.request.max.bytes={{ kafka_server_socket_request_max_bytes }}
 ############################# Log Basics #############################
 
 # The directory under which to store log files
-log.dir={{ kafka_log_dir }}
+log.dir={{ kafka_data_dir }}
 
 # The number of logical partitions per topic per server. More partitions allow greater parallelism
 # for consumption, but also mean more files.
@@ -83,6 +83,9 @@ log.flush.interval.ms={{ kafka_server_log_flush_interval_ms }}
 
 # The minimum age of a log file to be eligible for deletion
 log.retention.hours={{ kafka_server_log_retention_hours }}
+
+# the maximum size of the log before deleting it. This controls how large a log is allowed to grow
+log.retention.size = {{ kafka_server_log_retention_size }}
 
 # A size-based retention policy for logs. Segments are pruned from the log as long as the remaining
 # segments don't drop below log.retention.bytes.

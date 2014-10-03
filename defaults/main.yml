@@ -10,6 +10,7 @@ kafka_gid: 3070
 kafka_local_dir: /opt/kafka_{{ kafka_version }}
 kafka_log_dir: /var/log/kafka
 kafka_cfg_dir: /etc/kafka
+kafka_data_dir: /opt/kafka_{{ kafka_version }}/data
 
 # server.properties required settings
 kafka_server_JMX_PORT: 13005
@@ -26,10 +27,16 @@ kafka_server_num_io_threads: 8
 kafka_server_socket_send_buffer_bytes: 1048576
 kafka_server_socket_receive_buffer_bytes: 1048576
 kafka_server_socket_request_max_bytes: 104857600
+# max num messages before must be flushed to disk
 kafka_server_log_flush_interval_messages: 10000
-kafka_server_log_flush_interval_ms: 10000
-kafka_server_log_retention_hours: 168
-kafka_server_log_segment_bytes: 536870912
+# milliseconds before log messages must be flushed to disk
+kafka_server_log_flush_interval_ms: 1000
+# 90 days
+kafka_server_log_retention_hours: 2160
+# -1 infinite
+kafka_server_log_retention_size: -1
+# 10 megabytes
+kafka_server_log_segment_bytes: 10000000
 kafka_server_log_cleanup_interval_mins: 1
 kafka_server_zookeeper_connection_timeout_ms: 1000000
 kafka_server_kafka_metrics_polling_interval_secs: 5
