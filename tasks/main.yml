@@ -4,7 +4,16 @@
 #  supervisorctl: name=kafka state=stopped
 
 - include: dependencies.yml
+  tags: kafka
+
 - include: user.yml
+  tags: kafka
+
 - include: install.yml
+  tags: kafka
+
 - include: configure.yml
+  tags: kafka
+
 - include: supervise_broker.yml
+  tags: kafka

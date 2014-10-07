@@ -42,3 +42,6 @@ kafka_server_zookeeper_connection_timeout_ms: 1000000
 kafka_server_kafka_metrics_polling_interval_secs: 5
 kafka_server_kafka_metrics_reporters: kafka.metrics.KafkaCSVMetricsReporter
 kafka_server_kafka_csv_metrics_reporter_enabled: "false"
+
+# replication
+kafka_replication_factor: 1

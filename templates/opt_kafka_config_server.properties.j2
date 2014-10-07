@@ -98,6 +98,46 @@ log.segment.bytes={{ kafka_server_log_segment_bytes }}
 # to the retention policies
 log.cleanup.interval.mins={{ kafka_server_log_cleanup_interval_mins }}
 
+################################## Replication #################################
+
+# The default replication factor for automatically created topics.
+
+default.replication.factor={{ kafka_replication_factor }}
+
+# If a follower hasn't sent any fetch requests for this window of time, the
+# leader will remove the follower from ISR (in-sync replicas) and treat it as dead.
+replica.lag.time.max.ms=10000
+
+# If a replica falls more than this many messages behind the leader, the leader
+# will remove the follower from ISR and treat it as dead.
+replica.lag.max.messages=4000
+
+# The socket timeout for network requests to the leader for replicating data.
+# 30 * 1000
+replica.socket.timeout.ms=30000
+
+# The socket receive buffer for network requests to the leader for replicating data.
+# 64 * 1024
+replica.socket.receive.buffer.bytes=65536
+
+# The number of byes of messages to attempt to fetch for each partition in the
+# fetch requests the replicas send to the leader.
+# 1024 * 1024
+replica.fetch.max.bytes=1048576
+
+# The maximum amount of time to wait time for data to arrive on the leader in
+# the fetch requests sent by the replicas to the leader.
+replica.fetch.wait.max.ms=500
+
+# Minimum bytes expected for each fetch response for the fetch requests from
+# the replica to the leader. If not enough bytes, wait up to
+# replica.fetch.wait.max.ms for this many bytes to arrive.
+replica.fetch.min.bytes=1
+
+# Number of threads used to replicate messages from leaders. Increasing this
+# value can increase the degree of I/O parallelism in the follower broker.
+num.replica.fetchers=1
+
 ############################# Zookeeper #############################
 
 # Zookeeper connection string (see zookeeper docs for details).
