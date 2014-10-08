@@ -11,12 +11,14 @@ kafka_local_dir: /opt/kafka_{{ kafka_version }}
 kafka_log_dir: /var/log/kafka
 kafka_cfg_dir: /etc/kafka
 kafka_data_dir: /opt/kafka_{{ kafka_version }}/data
+kafka_metrics_dir: /opt/kafka_{{ kafka_version }}/kafka_metrics
 
 # server.properties required settings
 kafka_server_JMX_PORT: 13005
 kafka_server_broker_id: 1
 kafka_server_port: 9092
-kafka_host_name: "{{ ansible_fqdn }}"
+# ansible_fqdn appears to keep defaulting to localhost even tho we set the hostname
+kafka_host_name: "{{ ansible_eth0.ipv4.address }}"
 kafka_server_zookeeper_connect:
   - localhost:2181
 kafka_server_num_partitions: 2
@@ -41,7 +43,7 @@ kafka_server_log_cleanup_interval_mins: 1
 kafka_server_zookeeper_connection_timeout_ms: 1000000
 kafka_server_kafka_metrics_polling_interval_secs: 5
 kafka_server_kafka_metrics_reporters: kafka.metrics.KafkaCSVMetricsReporter
-kafka_server_kafka_csv_metrics_reporter_enabled: "false"
+kafka_server_kafka_csv_metrics_reporter_enabled: "true"
 
 # replication
 kafka_replication_factor: 1

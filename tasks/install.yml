@@ -1,6 +1,6 @@
 # file: ansible-kafka/tasks/install.yml
 
-- stat: path=/opt/kafka_{{kafka_version}}/
+- stat: path=/opt/kafka_{{ kafka_version }}/
   register: kafka_dir_status
 
 - get_url: url={{ kafka_download_url }}
@@ -11,7 +11,7 @@
 - file: path={{ kafka_log_dir }} state=directory owner={{ kafka_user }}
 - file: path={{ kafka_data_dir }} state=directory owner={{ kafka_user }}
 
-- command: chdir=/opt tar xzf /tmp/kafka_{{kafka_version}}.tar.gz creates=/opt/kafka_{{kafka_version}}/bin/kafka-server-start.sh
+- command: chdir=/opt tar xzf /tmp/kafka_{{ kafka_version }}.tar.gz creates=/opt/kafka_{{ kafka_version }}/bin/kafka-server-start.sh
 
 - stat: path=/opt/kafka_{{ kafka_version }}/logs
   register: log_path
@@ -19,8 +19,10 @@
 - file: path=/opt/kafka_{{ kafka_version }}/logs state=absent
   when: log_path.stat.exists and log_path.stat.isdir
 
-- file: src={{ kafka_log_dir }} dest=/opt/kafka_{{kafka_version}}/logs owner={{ kafka_user }} group={{ kafka_group }} state=link
-- file: src=/opt/kafka_{{kafka_version}}/config dest={{ kafka_cfg_dir }} owner={{ kafka_user }} group={{ kafka_group }} state=link
+- file: src={{ kafka_log_dir }} dest=/opt/kafka_{{ kafka_version }}/logs owner={{ kafka_user }} group={{ kafka_group }} state=link
+- file: src=/opt/kafka_{{ kafka_version }}/config dest={{ kafka_cfg_dir }} owner={{ kafka_user }} group={{ kafka_group }} state=link
 
-- file: path=/opt/kafka_{{kafka_version}} state=directory owner={{ kafka_user }} group={{ kafka_group }} recurse=yes
+- file: path={{ kafka_metrics_dir }} state=directory owner={{ kafka_user }} group={{ kafka_group }}
+
+- file: path=/opt/kafka_{{ kafka_version }} state=directory owner={{ kafka_user }} group={{ kafka_group }} recurse=yes
   changed_when: false
