@@ -47,3 +47,10 @@ kafka_server_kafka_csv_metrics_reporter_enabled: "true"
 
 # replication
 kafka_replication_factor: 1
+
+# graphite metrics
+kafka_graphite_metrics_build_dir: /opt/kafka-graphite
+kafka_graphite_metrics_version: f71c21e258563b37e7efef1b6fc61726003d0c47
+kafka_graphite_metrics_username: null
+kafka_graphite_metrics_token: nil
+kafka_graphite_metrics_group: kafka

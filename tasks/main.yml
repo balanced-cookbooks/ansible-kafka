@@ -15,5 +15,9 @@
 - include: configure.yml
   tags: kafka
 
+- include: metrics.yml
+  tags: [kafka, kafka-metrics]
+
 - include: supervise_broker.yml
   tags: kafka
+

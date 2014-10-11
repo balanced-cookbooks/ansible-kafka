@@ -153,6 +153,10 @@ zookeeper.connection.timeout.ms={{ kafka_server_zookeeper_connection_timeout_ms 
 # metrics reporter properties
 kafka.metrics.polling.interval.secs={{ kafka_server_kafka_metrics_polling_interval_secs }}
 kafka.metrics.reporters={{ kafka_server_kafka_metrics_reporters }}
+
 kafka.csv.metrics.dir={{ kafka_metrics_dir }}
-# Disable csv reporting by default.
 kafka.csv.metrics.reporter.enabled={{ kafka_server_kafka_csv_metrics_reporter_enabled }}
+
+librato.username={{ kafka_graphite_metrics_username }}
+librato.token={{ kafka_graphite_metrics_token }}
+librato.agent.identifier={{ kafka_graphite_metrics_group }}

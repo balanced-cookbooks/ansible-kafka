@@ -1,0 +1,20 @@
+
+- git: repo=https://github.com/tildeio/kafka-librato-reporter.git
+       dest={{ kafka_graphite_metrics_build_dir }}
+       version={{ kafka_graphite_metrics_version }}
+  when: kafka_graphite_metrics_username != None
+
+- command: mvn package
+  args:
+    chdir: "{{ kafka_graphite_metrics_build_dir }}"
+    creates: "{{ kafka_graphite_metrics_build_dir }}/target/kafka-librato-metrics-reporter-0.1.0.jar"
+  when: kafka_graphite_metrics_username != None
+
+- command: mv {{ kafka_graphite_metrics_build_dir }}/target/{{ item }} /opt/kafka_{{ kafka_version }}/libs/{{ item }}
+  args:
+    creates: /opt/kafka_{{ kafka_version }}/libs/{{ item }}
+  with_items:
+    - kafka-librato-metrics-reporter-0.1.0.jar
+  notify:
+    - restart kafka
+  when: kafka_graphite_metrics_username != None
