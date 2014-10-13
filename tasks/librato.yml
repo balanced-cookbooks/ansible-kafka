@@ -1,3 +1,5 @@
+---
+- apt: name=maven state=present
 
 - git: repo=https://github.com/tildeio/kafka-librato-reporter.git
        dest={{ kafka_graphite_metrics_build_dir }}
