@@ -6,10 +6,10 @@
        version={{ kafka_graphite_metrics_version }}
   when: kafka_graphite_metrics_username != None
 
-- command: mvn package
-  args:
-    chdir: "{{ kafka_graphite_metrics_build_dir }}"
-    creates: "{{ kafka_graphite_metrics_build_dir }}/target/kafka-librato-metrics-reporter-0.1.0.jar"
+- command: >
+    mvn package
+    chdir="{{ kafka_graphite_metrics_build_dir }}"
+    creates="{{ kafka_graphite_metrics_build_dir }}/target/kafka-librato-metrics-reporter-0.1.0.jar"
   when: kafka_graphite_metrics_username != None
 
 - command: mv {{ kafka_graphite_metrics_build_dir }}/target/{{ item }} /opt/kafka_{{ kafka_version }}/libs/{{ item }}
